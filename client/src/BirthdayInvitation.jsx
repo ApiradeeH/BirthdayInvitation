@@ -10,6 +10,8 @@ const BirthdayInvitation = () => {
   const [guests, setGuests] = useState([]);
   const [newGuestName, setNewGuestName] = useState("");
   const [travelOption, setTravelOption] = useState("");
+  const [showScrollDown, setShowScrollDown] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Fetch all guests from the backend
   useEffect(() => {
@@ -73,34 +75,36 @@ const BirthdayInvitation = () => {
     }
   };
 
-  // Handle scroll behavior for showing/hiding scroll buttons
   useEffect(() => {
     const handleScroll = () => {
-      const scrollDownButton = document.querySelector(".scroll-down");
-      const scrollTopButton = document.querySelector(".back-to-top");
-
-      // Get the current scroll position and the document's height
       const scrollY = window.scrollY;
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = document.documentElement.clientHeight;
       const maxScroll = scrollHeight - clientHeight;
 
-      // Show or hide the scroll-down button based on the scroll position
-      if (scrollY >= maxScroll - 100) {
-        scrollDownButton.classList.add("hidden-scroll-down");
-        scrollTopButton.style.display = "block"; // Show the scroll-up button
+      // Scroll down button visibility
+      if (scrollY >= maxScroll - 50) {
+        setShowScrollDown(false);
+        setShowScrollTop(true); // Show scroll-up when at the bottom
       } else if (scrollY > 100) {
-        scrollDownButton.classList.add("hidden-scroll-down");
-        scrollTopButton.style.display = "block";
+        setShowScrollDown(false);
+        setShowScrollTop(true);
       } else {
-        scrollDownButton.classList.remove("hidden-scroll-down");
-        scrollTopButton.style.display = "none";
+        setShowScrollDown(true);
+        setShowScrollTop(false);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -136,7 +140,7 @@ const BirthdayInvitation = () => {
             </a>
           </p>
 
-          <p>
+          <p style={{ fontFamily: "Gaegu, sans-serif" }}>
             Wir möchten Leni's 6ten Geburtstag in der Boulderhalle in Leipzig
             feiern! Dort werden die Kinder mit Hilfe eines Trainers spielerisch
             das Bouldern erlernen. Für's leibliche Wohl ist gesorgt: Pizza,
@@ -165,7 +169,10 @@ const BirthdayInvitation = () => {
           }}
         >
           <div className="form-group">
-            <p className="event-details">
+            <p
+              className="event-details"
+              style={{ fontFamily: "Gaegu, sans-serif" }}
+            >
               Wir freuen uns, wenn du Zeit hast und uns Bescheid gibst ob du zu
               unsere Feier kommen kannst.
             </p>
@@ -214,6 +221,7 @@ const BirthdayInvitation = () => {
                 onClick={() => removeGuest(guest._id)}
                 className="btn btn-danger "
                 style={{
+                  fontFamily: "Gaegu, sans-serif",
                   fontSize: "0.8em",
                   padding: "4px 8px",
                   borderRadius: "50%",
@@ -246,17 +254,18 @@ const BirthdayInvitation = () => {
         </div>
 
         {/* Scroll-Down Button */}
-        <button
-          className="scroll-down"
-          onClick={() => window.scrollTo({ top: 600, behavior: "smooth" })}
-        >
-          <FontAwesomeIcon icon={faChevronUp} rotation={180} />
-        </button>
+        {showScrollDown && (
+          <button className="scroll-down" onClick={scrollToBottom}>
+            <FontAwesomeIcon icon={faChevronUp} rotation={180} />
+          </button>
+        )}
 
         {/* Back-to-Top Button */}
-        <button className="back-to-top" onClick={scrollToTop}>
-          <FontAwesomeIcon icon={faChevronUp} />
-        </button>
+        {showScrollTop && (
+          <button className="back-to-top" onClick={scrollToTop}>
+            <FontAwesomeIcon icon={faChevronUp} />
+          </button>
+        )}
       </div>
     </div>
   );

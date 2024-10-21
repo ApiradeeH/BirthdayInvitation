@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playwrite+AT:ital,wght@0,100..400;1,100..400&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gaegu&family=Playwrite+IS:wght@100..400&display=swap");
 html,
 body {
   margin: 0;
@@ -17,8 +17,7 @@ body {
   padding: 50px;
   color: #523f3f;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  font-family: "Playwrite AT", cursive;
-  /* font-family: Arial, sans-serif; */
+  font-family: "Playwrite IS", cursive;
   position: relative;
   overflow: hidden; /* Hide overflow for flying elements */
 }
@@ -187,7 +186,7 @@ body {
   color: #25d366; /* WhatsApp green color */
 }
 
-/* Back-to-top button */
+.scroll-down,
 .back-to-top {
   position: fixed;
   bottom: 20px;
@@ -201,46 +200,26 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.3s;
-  display: none; /* Hidden initially */
+  z-index: 1000;
 }
 
+.scroll-down:hover,
 .back-to-top:hover {
   background-color: rgba(255, 255, 255, 0.5);
   transform: scale(1.1);
 }
 
-/* Show back-to-top button when user scrolls halfway down */
-@media (min-width: 768px) {
-  .back-to-top {
-    display: block; /* Show button on larger screens */
-  }
-}
-
-/* Scroll-down button */
-.scroll-down {
-  position: fixed;
-  bottom: 60px; /* Positioned just above the scroll-to-top button */
-  right: 20px;
-  background-color: rgba(255, 255, 255, 0.3);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 50%;
-  font-size: 1.5em;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.3s;
-  display: block; /* Visible initially */
-}
-
-.scroll-down:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  transform: scale(1.1);
-}
-
-/* Hide the scroll-down button after scrolling 100px */
-.hidden-scroll-down {
+.scroll-down.hidden-scroll-down,
+.back-to-top.hidden-scroll-up {
   display: none;
+}
+
+.back-to-top {
+  display: none; /* Initially hidden */
+}
+
+.scroll-down {
+  display: block; /* Initially shown */
 }
 
 @media (max-width: 768px) {
