@@ -15,7 +15,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
+    origin: "https://birthdayinvitation.onrender.com/", // Replace with your frontend URL
     methods: ["GET", "POST", "DELETE"],
     credentials: true,
   })
