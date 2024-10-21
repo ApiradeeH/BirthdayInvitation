@@ -214,3 +214,37 @@ body {
     display: block; /* Show button on larger screens */
   }
 }
+
+/* Scroll-down button */
+.scroll-down {
+  position: fixed;
+  bottom: 60px; /* Positioned just above the scroll-to-top button */
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  font-size: 1.5em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
+  display: block; /* Visible initially */
+}
+
+.scroll-down:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+/* Hide the scroll-down button after scrolling 100px */
+.hidden-scroll-down {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .scroll-down {
+    display: block; /* Make scroll down button visible on mobile */
+  }
+}
+

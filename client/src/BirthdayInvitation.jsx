@@ -73,6 +73,24 @@ const BirthdayInvitation = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollDownButton = document.querySelector(".scroll-down");
+      const scrollTopButton = document.querySelector(".back-to-top");
+
+      if (window.scrollY > 100) {
+        scrollDownButton.classList.add("hidden-scroll-down");
+        scrollTopButton.style.display = "block";
+      } else {
+        scrollDownButton.classList.remove("hidden-scroll-down");
+        scrollTopButton.style.display = "none";
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -84,9 +102,7 @@ const BirthdayInvitation = () => {
     <div>
       <div className="birthday-invitation">
         <div className="invitation-header">
-          <h1 className="invitation-title">
-            Einladung zum Geburtstag von Leni!
-          </h1>
+          <h1 className="invitation-title">Einladung zu Lenis Geburtstag!</h1>
           <img
             src={leni}
             alt="Birthday Celebration"
@@ -217,6 +233,13 @@ const BirthdayInvitation = () => {
             <FontAwesomeIcon icon={faWhatsapp} /> Mathias
           </a>
         </div>
+
+        <button
+          className="scroll-down"
+          onClick={() => window.scrollTo({ top: 600, behavior: "smooth" })}
+        >
+          <FontAwesomeIcon icon={faChevronUp} rotation={180} />
+        </button>
 
         {/* Back-to-Top Button */}
         <button className="back-to-top" onClick={scrollToTop}>
