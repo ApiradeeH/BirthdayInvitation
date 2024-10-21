@@ -18,7 +18,9 @@ const BirthdayInvitation = () => {
 
   const fetchGuests = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/allGuests");
+      const response = await axios.get(
+        "https://birthdayinvitation.onrender.com/api/allGuests"
+      );
       console.log("Fetched guests:", response.data);
       setGuests(response.data);
     } catch (error) {
@@ -33,10 +35,13 @@ const BirthdayInvitation = () => {
   const addGuest = async () => {
     if (newGuestName && travelOption) {
       try {
-        await axios.post("http://localhost:5000/api/addGuest", {
-          name: newGuestName,
-          travelOption,
-        });
+        await axios.post(
+          "https://birthdayinvitation.onrender.com/api/addGuest",
+          {
+            name: newGuestName,
+            travelOption,
+          }
+        );
 
         fetchGuests();
         setNewGuestName(""); // Clear input field
@@ -56,7 +61,9 @@ const BirthdayInvitation = () => {
   // Remove a guest via backend
   const removeGuest = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/deleteGuestById/${id}`);
+      await axios.delete(
+        `https://birthdayinvitation.onrender.com/api/deleteGuestById/${id}`
+      );
       setGuests((prevGuests) => prevGuests.filter((guest) => guest._id !== id));
     } catch (error) {
       console.error("Error removing guest", error);
