@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 .birthday-invitation {
@@ -247,4 +248,3 @@ body {
     display: block; /* Make scroll down button visible on mobile */
   }
 }
-

@@ -73,12 +73,23 @@ const BirthdayInvitation = () => {
     }
   };
 
+  // Handle scroll behavior for showing/hiding scroll buttons
   useEffect(() => {
     const handleScroll = () => {
       const scrollDownButton = document.querySelector(".scroll-down");
       const scrollTopButton = document.querySelector(".back-to-top");
 
-      if (window.scrollY > 100) {
+      // Get the current scroll position and the document's height
+      const scrollY = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      const maxScroll = scrollHeight - clientHeight;
+
+      // Show or hide the scroll-down button based on the scroll position
+      if (scrollY >= maxScroll - 100) {
+        scrollDownButton.classList.add("hidden-scroll-down");
+        scrollTopButton.style.display = "block"; // Show the scroll-up button
+      } else if (scrollY > 100) {
         scrollDownButton.classList.add("hidden-scroll-down");
         scrollTopButton.style.display = "block";
       } else {
@@ -234,6 +245,7 @@ const BirthdayInvitation = () => {
           </a>
         </div>
 
+        {/* Scroll-Down Button */}
         <button
           className="scroll-down"
           onClick={() => window.scrollTo({ top: 600, behavior: "smooth" })}
