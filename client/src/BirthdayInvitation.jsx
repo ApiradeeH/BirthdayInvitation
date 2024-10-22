@@ -82,11 +82,10 @@ const BirthdayInvitation = () => {
       const clientHeight = document.documentElement.clientHeight;
       const maxScroll = scrollHeight - clientHeight;
 
+      console.log({ scrollY, maxScroll, clientHeight });
+
       // Scroll down button visibility
-      if (scrollY >= maxScroll - 50) {
-        setShowScrollDown(false);
-        setShowScrollTop(true); // Show scroll-up when at the bottom
-      } else if (scrollY > 100) {
+      if (scrollY > 100) {
         setShowScrollDown(false);
         setShowScrollTop(true);
       } else {

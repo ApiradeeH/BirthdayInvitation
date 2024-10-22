@@ -215,11 +215,11 @@ body {
 }
 
 .back-to-top {
-  display: none; /* Initially hidden */
+  display: block;
 }
 
 .scroll-down {
-  display: block; /* Initially shown */
+  display: block;
 }
 
 @media (max-width: 768px) {
