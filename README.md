@@ -16,4 +16,4 @@ The **Birthday Invitation App** is a React-based application that allows users t
 - **Backend**: Node.js, MongoDB Atlas
 - **API Integration**: Axios for making API requests
 
-![Birthday Invitation App Preview](./client/public/images/BirthdayInvitationApp.png)
+![Birthday Invitation App Preview](./app/client/public/BirthdayInvitationApp.png)
