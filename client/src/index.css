@@ -101,6 +101,7 @@ body {
 
 .event-link:hover {
   text-decoration: none;
+  color: chartreuse;
 }
 
 .rsvp-form {
